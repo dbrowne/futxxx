@@ -34,4 +34,39 @@
 6. How can we determine when an oracle is resolved?
 
 ## Potential improvements
- 1. Have reliability stats on oracles to build a reputation layer. 
+ 1. Have reliability stats on oracles to build a reputation layer.   
+
+
+
+## development hindered due to local hw issues  Code coming later today (2 hours spent on hw issues now using burner laptop which does successfully run all Solana related programs)
+# 🧩 Summary of Issue (AVX vs AVX2)
+
+## 🔧 System
+- **Machine:** HP Z820 Workstation
+- **CPU:** Dual Intel Xeon E5-2667 v2 (Ivy Bridge, 2013)
+- **CPU Features:**
+   - ✅ AVX
+   - ❌ AVX2
+
+---
+
+## 🎯 Goal
+- Run `solana-test-validator` (Solana v1.14.17)
+- Use `anchor-cli 0.28.0` (which is compatible with Solana 1.14.x)
+- Build everything locally to avoid crashing on AVX2 instructions
+
+---
+
+## 💥 The Problem (also lack of experience and domain knowledge)
+Even after trying to compile Solana from source with the following:
+
+```toml
+# .cargo/config.toml
+[build]
+rustflags = ["-C", "target-cpu=core-avx-i", "-C", "target-feature=-avx2"]
+
+```
+## 💥 Docker images also fail since they are built with AVX2 support  (not a biggie but irksome)
+
+
+# skeleton code next
