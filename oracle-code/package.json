@@ -1,0 +1,20 @@
+{
+  "name": "oracle-code",
+  "version": "1.0.0",
+  "description": "``` anchor build ```",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.31.0",
+    "@project-serum/anchor": "^0.26.0",
+    "mocha": "^11.1.0"
+  }
+}

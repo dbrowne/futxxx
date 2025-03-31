@@ -1,0 +1,19 @@
+[programs.devnet]
+oracle = "Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS"
+
+
+[programs.localnet]
+oracle = "Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "mocha -t 1000000 tests/"
+
+[workspace]
+members = ["programs/oracle"]

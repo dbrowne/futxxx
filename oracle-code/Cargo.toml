@@ -1,0 +1,6 @@
+[workspace]
+members = ["programs/oracle"]
+resolver = "2"
+
+[patch.crates-io]
+ahash = { path = "vendor/ahash" }

@@ -34,19 +34,22 @@
 6. How can we determine when an oracle is resolved? Is there a mandatory reveal time?
 
 ## Potential improvements
- 1. Have reliability stats on oracles to build a reputation layer.   
+ 1. Have reliability stats on oracles to build a reputation layer.
+2. Create an enforced time reveal window
+3. create a quorum: eg. resolution can only occur after a minimum number of Oracles have voted. 
 
 
 
-## development hindered due to local hw issues  Code coming later today (2 hours spent on hw issues now using burner laptop which does successfully run all Solana related programs)
+
+## FYI issue resolved but.. development was hindered due to local hw issues.  Code coming later today (2 hours spent on hw issues.  now using burner laptop which does successfully run all Solana related programs)
 # 🧩 Summary of Issue (AVX vs AVX2)
 
 ## 🔧 System
-- **Machine:** HP Z820 Workstation
+- **Machine:** HP Z820 Workstation 512GB ram (was great for simulating virtualized kubernetes clusters)
 - **CPU:** Dual Intel Xeon E5-2667 v2 (Ivy Bridge, 2013)
 - **CPU Features:**
    - ✅ AVX
-   - ❌ AVX2
+   - ❌ [AVX2](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions)  Needed for Solana development
 
 ---
 
@@ -69,5 +72,65 @@ rustflags = ["-C", "target-cpu=core-avx-i", "-C", "target-feature=-avx2"]
 ## 💥 Docker images also fail since they are built with AVX2 support  (not a biggie but irksome)
 
 
-# skeleton code:
+# Approach:
+## Based on what I saw and the example programs My anchor program will have the following components:
+1. Oracle for the event being resolved
+2. Commitment to store the hashed vote
+3. User collateral
 
+## Contract logic:
+1. Create_network:  create a network with a USDC collateral requirement
+2. Join_network:  
+3. commit : Save the hash (bit, salt) as the immutable commitment
+4. reveal: check the (bit,salt) and mark it revealed
+5. resolve:  store the resolution
+6. slash:   slashing mechanism.
+
+
+
+## 💥 Build Problems  (mega time suck!! 90 minutes++) : 
+0. Have to manually change the cargo lock version to 3 due to anchor/solana/rust version compatiblity issues
+1.   looks like cargo-build-sbf has a dependency on a bundled cargo version that does not understand cargo lock v 4
+2. Had to incorporate a local version of ahash to address the following build error
+```
+error[E0658]: use of unstable library feature 'build_hasher_simple_hash_one'
+--> src/random_state.rs:463:5
+|
+463 | /     fn hash_one<T: Hash>(&self, x: T) -> u64 {
+464 | |         RandomState::hash_one(self, x)
+465 | |     }
+| |_____^
+|
+```
+3. Have wallet issues  so only testing on localnet:
+
+## test results
+```
+
+djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8Aanchor build
+anchor deploy --provider.cluster localnet
+warning: unused config key `unstable.lockfile-version` in `/home/djb/code/futxxx/oracle-code/.cargo/config.toml`
+    Finished release [optimized] target(s) in 0.24s
+Deploying cluster: http://localhost:8899
+Upgrade authority: /home/djb/.config/solana/id.json
+Deploying program "oracle"...
+Program path: /home/djb/code/futxxx/oracle-code/target/deploy/oracle.so...
+Program Id: Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS
+
+Deploy success
+djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8AANCHOR_PROVIDER_URL=http://127.0.0.1:8899 \
+ANCHOR_WALLET=target/deploy/oracle-keypair.json \
+npx mocha tests/
+
+
+  oracle
+Test runs
+    ✔ Is initialized!
+
+
+  1 passing (3ms)
+
+djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8A
+
+
+```
