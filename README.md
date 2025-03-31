@@ -5,7 +5,7 @@
 1. In distributed systems one of the key concepts is "Byzantyne Fault Tolerance" described in Lamports paper ["The Byzantyne General's Problem"](https://dl.acm.org/doi/10.1145/357172.357176)
 2. In systems designs(where there is no incentive to be faulty ) the minimum number of nodes necessary to tolerate f faullty nodes would be 3xf+1.
 3. So if we have n total nodes and f faulty nodes we have n-f nodes whith the constraint of n >= 3f+1 or n-f >= 2f+1 nodes  or ~ 2/3 of the nodes must not be faulty. (I hate hearing people telling me it is 51%. They never read the paper.)
-4. The problem presents itself in line 2 where there is no incentive to be faulty or in the case of an oracle, presenting false information.
+4. The problem presents itself in line 2 where there is incentive to be faulty or in the case of an oracle, presenting false information.
 5. In the case of monetized Oracles, dishonest behavior can be profitable so we now have to address at least three concepts to mitigate an intentionally dishonest majority:   
    1. Distributed systems 
    2. Game theory (which is not my strength but I can talk about the prisoner's dilemma ~ Nash equilibrium)
