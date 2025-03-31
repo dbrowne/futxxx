@@ -105,6 +105,7 @@ error[E0658]: use of unstable library feature 'build_hasher_simple_hash_one'
 3. Have wallet issues  so only testing on localnet:
 
 ## test results
+1. basic test passes
 ```
 
 djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8Aanchor build
@@ -134,3 +135,11 @@ djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8A
 
 
 ```
+
+## 💥 Need some hints  as I am in npm hell and cannot get the tests to work.
+
+
+## will elaborate more on this. 
+
+
+## will proceed with the UI once I can verify my tests (testing on  localnet)

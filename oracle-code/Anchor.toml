@@ -1,19 +1,19 @@
 [programs.devnet]
-oracle = "Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS"
+oracle = "6Dgxvo5tMUAh1VXfHPg5oA75mJJi2jrxzbma7xtZFbAs"
 
 
 [programs.localnet]
-oracle = "Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS"
+oracle = "78X8sVvG5FmDEQJWE5at6NS7VvUqQCZom66Vid4YMgE1"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "mocha -t 1000000 tests/"
+test = "mocha -r ts-node/register tests/*.ts"
 
 [workspace]
 members = ["programs/oracle"]

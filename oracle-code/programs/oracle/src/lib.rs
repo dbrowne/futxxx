@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-declare_id!("Bs7GGMzNW9nhrZrhxyaLW1AQiaQX6kk1CTqfvj1RkRvS");
+declare_id!("6Dgxvo5tMUAh1VXfHPg5oA75mJJi2jrxzbma7xtZFbAs");
 #[program]
 pub mod oracle {
     use super::*;

@@ -1,6 +1,9 @@
 import * as anchor from "@coral-xyz/anchor";
 import { assert } from "chai";
+
 import oracleIdl from "../target/idl/oracle.json" assert { type: "json" };
+
+
 
 describe("oracle", () => {
     const provider = anchor.AnchorProvider.env();
@@ -88,7 +91,7 @@ describe("oracle", () => {
             .rpc();
 
         const state = await program.account.oracle.fetch(oracle.publicKey);
-        assert.equal(state.isResolved, true);
-        assert.equal(state.resolutionBit, true);
+        assert.strictEqual(state.isResolved, true);
+        assert.strictEqual(state.resolutionBit, true);
     });
 });
