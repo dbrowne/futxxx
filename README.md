@@ -139,7 +139,7 @@ djb@SGX:~/code/futxxx/oracle-code$  git:(main) 5A 6M 8A
 ## 💥 Need some hints  as I am in npm hell and cannot get the tests to work.
 
 
-## will elaborate more on this. 
+## Created .js test. (ran ok) Oracle.ts test does not run.  
 
 
 ## will proceed with the UI once I can verify my tests (testing on  localnet)
